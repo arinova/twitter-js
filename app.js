@@ -1,4 +1,5 @@
 const express = require('express');
+const nunjucks= require('nunjucks');
 const app = express();
 
 app.use('/', function (req, res, next){
@@ -26,4 +27,20 @@ app.use('/special/', function (req, res, next){
 
 app.get('/special', function(req, res, next){
   res.send("This is special");
+});
+
+var locals = {
+    title: 'An Example',
+    people: [
+        { name: 'Gandalf'},
+        { name: 'Frodo' },
+        { name: 'Hermione'}
+    ]
+};
+
+app.set('view engine', 'html');
+app.engine('html', nunjucks.render);
+nunjucks.configure('views', {noCache: true});
+nunjucks.render('index.html', locals, function(err, output){
+  console.log(output);
 });
