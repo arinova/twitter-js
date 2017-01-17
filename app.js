@@ -1,50 +1,25 @@
 const express = require('express');
 const nunjucks= require('nunjucks');
 const app = express();
+const routes = require('./routes/');
 
-app.use('/', function (req, res, next){
-  console.log("Request", req.method, req.path);
-  next();
-});
+app.use('/', routes);
 
+app.use(express.static('public'));
+// app.use(express.static('views'));
 
 app.listen(3000, function(){
   console.log("Server Listening");
 });
 
-app.get('/', function(req, res, next){
-//  res.send("This is twitterrrrrrr");
-  const people = [{name: 'Full'}, {name: 'Stacker'}, {name: 'Son'}];
-  res.render( 'index', {title: 'Hall of Fame', people: people});
-});
-
-app.get('/news', function(req, res, next){
-  res.send("This is news");
-});
-
-app.use('/special/', function (req, res, next){
-  console.log("You've reached a special area");
-  next();
-});
-
-app.get('/special', function(req, res, next){
-  res.send("This is special");
-});
-
-var locals = {
-    title: 'An Example',
-    people: [
-        { name: 'Gandalf'},
-        { name: 'Frodo' },
-        { name: 'Hermione'}
-    ]
-};
-
+// app.get('/news', function(req, res, next){
+//   res.send("This is news");
+// });
 
 
 app.set('view engine', 'html');
 app.engine('html', nunjucks.render);
 nunjucks.configure('views', {noCache: true});
-nunjucks.render('index.html', locals, function(err, output){
-  console.log(output);
-});
+// nunjucks.render('index.html', locals, function(err, output){
+//   console.log(output);
+// });
