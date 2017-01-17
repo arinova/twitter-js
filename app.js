@@ -13,7 +13,9 @@ app.listen(3000, function(){
 });
 
 app.get('/', function(req, res, next){
-  res.send("This is twitterrrrrrr");
+//  res.send("This is twitterrrrrrr");
+  const people = [{name: 'Full'}, {name: 'Stacker'}, {name: 'Son'}];
+  res.render( 'index', {title: 'Hall of Fame', people: people});
 });
 
 app.get('/news', function(req, res, next){
@@ -37,6 +39,8 @@ var locals = {
         { name: 'Hermione'}
     ]
 };
+
+
 
 app.set('view engine', 'html');
 app.engine('html', nunjucks.render);
