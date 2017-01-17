@@ -20,6 +20,10 @@ body {
   background-color: #f5f5f5;
 }
 
+ul {
+  list-style: none;
+}
+
 
 /* Custom page CSS
 -------------------------------------------------- */
