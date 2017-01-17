@@ -1,7 +1,10 @@
 const express = require('express');
+const bodyParser= require('body-parser');
 const nunjucks= require('nunjucks');
 const app = express();
 const routes = require('./routes/');
+
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/', routes);
 
