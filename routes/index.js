@@ -1,9 +1,6 @@
 const express = require('express');
-//const bodyParser= require('body-parser');
 const router = express.Router();
-
 const tweetBank = require('../tweetBank');
-
 
 // router.get('/stylesheets/style.css', function(req, res) {
 // 	res.sendFile('/Users/Anna/Desktop/GRACE HOPPER/twitter-js/public/stylesheets/style.css');
@@ -32,10 +29,12 @@ module.exports = function(io) {
   router.post('/tweets', function(req, res) {
     var name = req.body.name;
     var text = req.body.text;
-    // tweetBank.add(name, text);
-    // res.redirect('/');
+    tweetBank.add(name, text);
     io.sockets.emit('newTweet', { name: name, text: text });
+    res.redirect('/');
   });
+
+
 
   return router;
 }
