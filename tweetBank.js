@@ -3,11 +3,11 @@ const _ = require('lodash');
 var data=[]; //store tweets // ['Nimit Hashington', "Fullstack Academy is awesome! The instructors are just so cool. #fullstacklove #codedreams"]
 
 function add (name, content) {
-  data.push({ name: name, content: content });
+  data.push({ name: name, content: content, id: data.length.toString() });
 }
 
 function list () {
-  return _.cloneDeep(data); 
+  return _.cloneDeep(data);
 }
 
 function find (properties) {
